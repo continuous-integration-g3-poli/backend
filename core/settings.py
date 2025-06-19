@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
     'accounts',
 ]
 
@@ -50,6 +51,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+}
 
 ROOT_URLCONF = 'core.urls'
 
@@ -74,6 +80,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
 DATABASES = {}
 
 if os.environ.get('GITHUB_WORKFLOW'):
@@ -90,6 +97,7 @@ else:
     # Configuración local (puedes ajustar según tu entorno)
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.dummy',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 
 
